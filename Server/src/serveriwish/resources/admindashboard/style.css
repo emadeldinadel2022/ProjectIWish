@@ -1,0 +1,32 @@
+.white_background{
+    -fx-background-color: '#fff';
+}
+
+.right-side-border{
+    -fx-background-color: #6F6F6F;
+    -fx-border-width: 0 1 0 0;
+}
+
+.search-container{
+    -fx-border-color: #6F6F6F;
+    -fx-border-radius: 30;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.primary-color{
+    -fx-background-color: #EFF2F6;
+}
+
+.card{
+    -fx-background-color: #fff;
+    -fx-background-radius:20;
+}
+
+.toggle-button{
+    -fx-border-color: rgb(29, 161, 29);
+    -fx-background-color: rgb(0, 231, 0);
+    -fx-background-radius:20;
+}

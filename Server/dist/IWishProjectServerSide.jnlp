@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="IWishProjectServerSide.jnlp">
+  <information>
+    <title>IWishProjectServerSide</title>
+    <vendor>Friends</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="IWishProjectServerSide.jar" size="73928" download="eager" />
+    <jar href="lib\gson-2.8.2.jar" size="232932" download="eager" />
+    <jar href="lib\json-20231013.jar" size="74702" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.11.jar" size="2036609" download="eager" />
+    <jar href="lib\protobuf-java-2.6.0.jar" size="596435" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="IWishProjectServerSide" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="serveriwish.MainView"  name="IWishProjectServerSide" />
+  <update check="always"/>
+</jnlp>

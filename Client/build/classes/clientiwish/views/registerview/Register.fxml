@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.registerview.RegisterController">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="900.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtfFieldEmail" layoutX="77.0" layoutY="340.0" prefHeight="30.0" prefWidth="272.0" promptText="Enter your email...." style="-fx-border-color: #000000; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtFieldUniqueName" layoutX="81.0" layoutY="241.0" prefHeight="30.0" prefWidth="141.0" promptText="Enter unique name ...." style="-fx-border-color: #000000; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtFieldUserFullName" layoutX="83.0" layoutY="173.0" prefHeight="30.0" prefWidth="272.0" promptText="Enter your full name..." style="-fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
+            <Label layoutX="117.0" layoutY="18.0" prefHeight="137.0" prefWidth="221.0" text="SIGN UP">
+               <font>
+                  <Font name="Aldhabi" size="79.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="110.0" text="Join I-Wish to start sharing and reciving gifts" textFill="#f5be5a">
+               <font>
+                  <Font name="Baskerville Old Face" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="81.0" layoutY="148.0" prefHeight="22.0" prefWidth="152.0" text="Your Full Name">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" layoutY="212.0" text="Unique Name">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="318.0" text="Email">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="381.0" text="Create a Password">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="440.0" text="Confirm Your Password">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="bttnSignUp" layoutX="136.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="44.0" prefWidth="183.0" style="-fx-background-color: #f6b63d;" text="Sign up" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville Old Face" size="24.0" />
+               </font>
+            </Button>
+            <DatePicker fx:id="datePickerDOB" layoutX="246.0" layoutY="244.0" prefHeight="30.0" prefWidth="141.0" promptText="choose a date..." style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passFieldUserPassword" layoutX="74.0" layoutY="403.0" prefHeight="30.0" prefWidth="272.0" promptText="Enter your password..." style="-fx-border-color: #000000; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passFieldConfirmPassword" layoutX="77.0" layoutY="470.0" prefHeight="3.0" prefWidth="272.0" promptText="Confirm your password..." style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" />
+            <Label layoutX="252.0" layoutY="212.0" text="Birthdate">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="289.0" text="Gender">
+               <font>
+                  <Font name="Baskerville Old Face" size="18.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="radioBttnMale" layoutX="162.0" layoutY="292.0" mnemonicParsing="false" onAction="#getGender" text="Male">
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioBttnFemale" layoutX="273.0" layoutY="292.0" mnemonicParsing="false" onAction="#getGender" text="Female" toggleGroup="$gender" />
+            <CheckBox fx:id="checkboxPolicy" layoutX="67.0" layoutY="513.0" mnemonicParsing="false" onAction="#justBttnHandler" text="By signing up, you agree to our terms and privacy policy" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="730.0" fitWidth="484.0" layoutX="-109.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" rotate="13.0">
+               <image>
+                  <Image url="@../resources/loginandregister/gift.jpg" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
