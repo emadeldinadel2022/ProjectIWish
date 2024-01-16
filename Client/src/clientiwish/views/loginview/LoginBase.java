@@ -24,6 +24,8 @@ public abstract class LoginBase extends BorderPane {
     protected final ImageView imageView;
     protected final ImageView imageView0;
     protected final Hyperlink regHyper;
+    protected final Label loginDataAlert;
+    protected final Label loginPasswordAlert;
     protected final AnchorPane anchorPane0;
     protected final ImageView imageView1;
     protected final DropShadow dropShadow;
@@ -39,6 +41,8 @@ public abstract class LoginBase extends BorderPane {
         imageView = new ImageView();
         imageView0 = new ImageView();
         regHyper = new Hyperlink();
+        loginDataAlert = new Label();
+        loginPasswordAlert = new Label();
         anchorPane0 = new AnchorPane();
         imageView1 = new ImageView();
         dropShadow = new DropShadow();
@@ -48,14 +52,14 @@ public abstract class LoginBase extends BorderPane {
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
         setPrefHeight(600.0);
-        setPrefWidth(900.0);
+        setPrefWidth(800.0);
 
         anchorPane.setPrefHeight(600.0);
         anchorPane.setPrefWidth(545.0);
         anchorPane.setStyle("-fx-background-color: #ffffff;");
         anchorPane.getStylesheets().add("/clientiwish/views/loginview/../resources/loginandregister/pic.css");
 
-        textFieldUserName.setLayoutX(144.0);
+        textFieldUserName.setLayoutX(118.0);
         textFieldUserName.setLayoutY(252.0);
         textFieldUserName.setPrefHeight(48.0);
         textFieldUserName.setPrefWidth(211.0);
@@ -63,7 +67,7 @@ public abstract class LoginBase extends BorderPane {
         textFieldUserName.setStyle("-fx-background-color: transparent; -fx-border-color: #00000099; -fx-border-width: 0px 0px 2px 0px;");
         textFieldUserName.setFont(new Font(18.0));
 
-        textFieldPasswordField.setLayoutX(142.0);
+        textFieldPasswordField.setLayoutX(116.0);
         textFieldPasswordField.setLayoutY(310.0);
         textFieldPasswordField.setPrefHeight(50.0);
         textFieldPasswordField.setPrefWidth(215.0);
@@ -71,8 +75,8 @@ public abstract class LoginBase extends BorderPane {
         textFieldPasswordField.setStyle("-fx-background-color: transparent; -fx-border-color: #00000099; -fx-border-width: 0px 0px 2px 0px;");
         textFieldPasswordField.setFont(new Font(18.0));
 
-        bttnLogin.setLayoutX(197.0);
-        bttnLogin.setLayoutY(414.0);
+        bttnLogin.setLayoutX(171.0);
+        bttnLogin.setLayoutY(417.0);
         bttnLogin.setMnemonicParsing(false);
         bttnLogin.setOnAction(this::handleLoginAction);
         bttnLogin.setPrefHeight(41.0);
@@ -83,14 +87,14 @@ public abstract class LoginBase extends BorderPane {
         bttnLogin.setOpaqueInsets(new Insets(10.0, 0.0, 0.0, 0.0));
         bttnLogin.setFont(new Font(24.0));
 
-        hyperlink.setLayoutX(145.0);
+        hyperlink.setLayoutX(119.0);
         hyperlink.setLayoutY(367.0);
         hyperlink.setStyle("-: #F6B63DD6;");
         hyperlink.setText("Forgot Password?");
         hyperlink.setTextFill(javafx.scene.paint.Color.valueOf("#f6b63d"));
 
-        label.setLayoutX(165.0);
-        label.setLayoutY(59.0);
+        label.setLayoutX(139.0);
+        label.setLayoutY(64.0);
         label.setPrefHeight(132.0);
         label.setPrefWidth(199.0);
         label.getStylesheets().add("/clientiwish/views/loginview/../resources/loginandregister/pic.css");
@@ -99,7 +103,7 @@ public abstract class LoginBase extends BorderPane {
 
         imageView.setFitHeight(32.0);
         imageView.setFitWidth(33.0);
-        imageView.setLayoutX(105.0);
+        imageView.setLayoutX(79.0);
         imageView.setLayoutY(260.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
@@ -107,19 +111,29 @@ public abstract class LoginBase extends BorderPane {
 
         imageView0.setFitHeight(34.0);
         imageView0.setFitWidth(32.0);
-        imageView0.setLayoutX(105.0);
+        imageView0.setLayoutX(79.0);
         imageView0.setLayoutY(319.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
         imageView0.setImage(new Image(getClass().getResource("../resources/loginandregister/lock-svgrepo-com%20(1).png").toExternalForm()));
 
-        regHyper.setLayoutX(129.0);
+        regHyper.setLayoutX(103.0);
         regHyper.setLayoutY(524.0);
         regHyper.setOnAction(this::handleRegisterHyper);
         regHyper.setStyle("-: #F6B63DD6;");
         regHyper.getStylesheets().add("/clientiwish/views/loginview/../resources/loginandregister/pic.css");
         regHyper.setText("Don't have account? Register now..");
         regHyper.setTextFill(javafx.scene.paint.Color.valueOf("#f6b63d"));
+
+        loginDataAlert.setLayoutX(159.0);
+        loginDataAlert.setLayoutY(470.0);
+        loginDataAlert.setTextFill(javafx.scene.paint.Color.RED);
+        loginDataAlert.setFont(new Font("Baskerville Old Face", 16.0));
+
+        loginPasswordAlert.setLayoutX(118.0);
+        loginPasswordAlert.setLayoutY(469.0);
+        loginPasswordAlert.setTextFill(javafx.scene.paint.Color.RED);
+        loginPasswordAlert.setFont(new Font("Baskerville Old Face", 16.0));
         setCenter(anchorPane);
 
         BorderPane.setAlignment(anchorPane0, javafx.geometry.Pos.CENTER);
@@ -129,7 +143,7 @@ public abstract class LoginBase extends BorderPane {
 
         imageView1.setFitHeight(756.0);
         imageView1.setFitWidth(572.0);
-        imageView1.setLayoutX(-84.0);
+        imageView1.setLayoutX(-123.0);
         imageView1.setLayoutY(-19.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
@@ -149,6 +163,8 @@ public abstract class LoginBase extends BorderPane {
         anchorPane.getChildren().add(imageView);
         anchorPane.getChildren().add(imageView0);
         anchorPane.getChildren().add(regHyper);
+        anchorPane.getChildren().add(loginDataAlert);
+        anchorPane.getChildren().add(loginPasswordAlert);
         anchorPane0.getChildren().add(imageView1);
 
     }

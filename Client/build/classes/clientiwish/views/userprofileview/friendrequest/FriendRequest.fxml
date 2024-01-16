@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="viewFriendRequest" prefHeight="653.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.friendrequest.FriendRequestController">
+   <children>
+      <TableView fx:id="fRequestTableView" layoutX="-8.0" layoutY="-1.0" prefHeight="653.0" prefWidth="815.0">
+        <columns>
+          <TableColumn fx:id="friendName" prefWidth="272.0" text="Sender Name" />
+          <TableColumn fx:id="friendEmail" prefWidth="272.0" text="Sender Email" />
+            <TableColumn fx:id="friendBirthdate" prefWidth="272.0" text="Sender birthdate" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

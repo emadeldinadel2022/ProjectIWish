@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.friendslist.FriendsListController">
-    
+<AnchorPane id="AnchorPane" fx:id="viewFriendList" prefHeight="653.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.friendslist.FriendsListController">
+   <children>
+      <TableView fx:id="fListTableView" layoutX="-8.0" layoutY="-1.0" prefHeight="653.0" prefWidth="815.0">
+        <columns>
+          <TableColumn fx:id="FriendName" prefWidth="267.6666717529297" text="Friend Name" />
+          <TableColumn fx:id="friendEmail" prefWidth="281.3333282470703" text="Friend Email" />
+            <TableColumn fx:id="friendBirthdate" prefWidth="265.3333435058594" text="Friend Birthdate" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

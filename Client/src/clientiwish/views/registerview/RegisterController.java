@@ -1,27 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clientiwish.views.registerview;
 
-import clientiwish.services.Register;
+import clientCommunication.Client;
+import clientiwish.models.DTOUser;
+import java.io.IOException;
 import java.time.LocalDate;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
+import sharedlibraries.Response;
 
+public class RegisterController {
 
-/**
- *
- * @author Software
- */
-public class RegisterController{
     @FXML
     private TextField txtFieldUserFullName;
     @FXML
@@ -36,63 +39,137 @@ public class RegisterController{
     private PasswordField passFieldConfirmPassword;
     @FXML
     private RadioButton radioBttnMale, radioBttnFemale;
-    @FXML
     private CheckBox chexkboxPolicy;
 
-    
-    private static Register regData = new Register();
-    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @FXML
+    private Hyperlink logHyper;
+
+    @FXML
+    private Label dataAlert;
+
+    @FXML
+    private Label confirmationAlert;
+
+    @FXML
+    private Label passwordAlert;
+    @FXML
+    private Button bttnSignUp;
+    @FXML
+    private ToggleGroup gender;
+    @FXML
+    private Label emailLabel;
+
+    @FXML
+    void handleLoginHyper(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/clientiwish/views/loginview/Login.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private static DTOUser regData = new DTOUser();
+
     @FXML
     public void handleButtonAction(ActionEvent event) {
         String userFullName = txtFieldUserFullName.getText();
         String userUniqueName = txtFieldUniqueName.getText();
-        LocalDate localDate = datePickerDOB.getValue();
+        LocalDate userDate = datePickerDOB.getValue();
         String userEmail = txtfFieldEmail.getText();
-        String userPassword =passFieldUserPassword.getText();
+        String userPassword = passFieldUserPassword.getText();
         String confirmUserPassword = passFieldConfirmPassword.getText();
-        
-        
-        if(userFullName.length() == 0 || userUniqueName.length() == 0 || userPassword.length() == 0 
-                || userFullName.length() == 0 || confirmUserPassword.length() == 0 || localDate == null){
-            System.out.println("please enter your data");
-        }
-        
-        
-        //confirmUserPassword
-        else if(!userPassword.equals(confirmUserPassword)){
-            System.out.println("wrong password confirmation!");
-        }
-        
-        //user password check
-        if(userPassword.length() < 8){
-            System.out.println("password must be greater than 8 chars");
-        } 
-        
-        
-        
-       regData = new Register(userFullName, userUniqueName, localDate, ' ', userEmail, userPassword);
-        
-    }
-    
-    @FXML
-    public void justBttnHandler(ActionEvent actionEvent) {
-        if (chexkboxPolicy.isSelected()) {
-            chexkboxPolicy.setSelected(true);
+
+        if (userFullName.length() == 0 || userUniqueName.length() == 0
+                || userFullName.length() == 0 || userDate == null) {
+            dataAlert.setText("please, complete your data");
         } else {
-            chexkboxPolicy.setSelected(false);
+            dataAlert.setText("");
+
+            if (!isValidEmail(userEmail)) {
+                emailLabel.setText("Invalid email format");
+            } else {
+
+                emailLabel.setText("");
+                if (userPassword.length() < 8) {
+                    passwordAlert.setText("Password must be greater than 8 chars");
+                } else {
+                    passwordAlert.setText("");
+                    if (!userPassword.equals(confirmUserPassword)) {
+                        confirmationAlert.setText("Wrong password confirmation!");
+                    } else {
+                        confirmationAlert.setText("");
+                        RadioButton selectedRadioButton = (RadioButton) gender.getSelectedToggle();
+                        if (selectedRadioButton != null) {
+                            char selectedGender = selectedRadioButton.getText().charAt(0);
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    Client.updateResponse(null);
+                                    Client.sendRequest("REGISTER", new DTOUser(userUniqueName, userEmail, userFullName, userPassword, userDate, selectedGender));
+
+                                    while (Client.getResponse() == null) {
+                                        try {
+                                            Thread.sleep(100);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+                                    // Handle the response from the server
+                                    Response<DTOUser> responseRegister = Client.getResponse();
+                                    Platform.runLater(() -> {
+                                        if (responseRegister != null && responseRegister.isSuccess()) {
+                                            // Registration successful, load login scene
+                                            try {
+                                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/clientiwish/views/loginview/Login.fxml"));
+                                                root = loader.load();
+                                                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                                scene = new Scene(root);
+                                                stage.setScene(scene);
+                                                stage.show();
+                                            } catch (IOException ex) {
+                                                ex.printStackTrace();
+                                            }
+                                        } else {
+                                            Platform.runLater(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    dataAlert.setText("User already exists, please change the username.");
+                                                }
+                                            });
+
+                                        }
+                                    });
+                                }
+                            }.start();
+                        } else {
+                            dataAlert.setText("plese select your gender");
+                        }
+                    }
+                }
+
+            }
         }
     }
 
-    
     @FXML
-    public void getGender(ActionEvent actionEvent){
+    public void getGender(ActionEvent actionEvent) {
         if (radioBttnMale.isSelected()) {
-            regData.setUserGender('M');
+            regData.setGender('M');
         } else if (radioBttnFemale.isSelected()) {
-            regData.setUserGender('F');
-        }      
+            regData.setGender('F');
+        }
     }
-    
-    
-    
+
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+
+        return email.matches(emailPattern);
+    }
+
 }

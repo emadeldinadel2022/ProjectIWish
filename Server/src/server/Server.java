@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package server;
 
 import java.io.IOException;
@@ -12,80 +8,97 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import queryhandler.DAO;
+import dataaccesslayer.DAO;
+import dataaccesslayer.DAOUser;
 
-/**
- *
- * @author Friends
- */
 public class Server {
     private static ArrayList<String> emails;
-    private static ArrayList<String> userUniqueNames;
-    private final static DAO STATICDBOBJECT_DAO = DAO.getInstance();
+    private static DAO STATICDBOBJECT_DAO;
     private ServerSocket serverSocket;
-    private boolean serverStop;
+    private boolean serverStatus;
     private String IP;
     Thread threadServer;
+
     
-    
-    static {
-        try {
-            emails = STATICDBOBJECT_DAO.getEmails();
-            userUniqueNames = STATICDBOBJECT_DAO.getUserUniqueNames();
-        } catch (SQLException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public Server(){
+
+    public Server() {
         try {
             serverSocket = new ServerSocket(5885);
-            
-            
+            STATICDBOBJECT_DAO = DAO.getInstance();
+            serverStatus = true;
+            System.out.println("Server connected to Database successfully");
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public ArrayList<String> getUserUniqueNames() {
-        return userUniqueNames;
-    }
-
     public static DAO getSTATICDBOBJECT_DAO() {
         return STATICDBOBJECT_DAO;
     }
-    
-    public ArrayList<String> getEmails() {
-        return emails;
-    }
-    
-    class ServerListener implements Runnable{
+
+    class ServerThread implements Runnable {
 
         @Override
         public void run() {
-            while(true){
-                try{
+            while (true) {
+                try {
                     Socket clientSocket = serverSocket.accept();
-                    if(clientSocket.isConnected()){
+                    if (clientSocket.isConnected()) {
                         IP = String.valueOf(clientSocket.getInetAddress());
                         ClientHandler clientHandler = new ClientHandler(clientSocket);
+                        clientHandler.start();
+                        System.out.println(IP + " has connected\n");
                     }
-                }catch(IOException ex){
+                } catch (IOException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-        
-    }
 
-    /*
-    public void setUserNames(ArrayList<String> userNames){
-        Server.userNames = userNames;
     }
     
-    public void setEmails(ArrayList<String> emails){
-        Server.emails = emails;
+    public void stopServer() {
+        try {
+            serverSocket.close();
+            STATICDBOBJECT_DAO.closeConnection();
+            // Optionally, close other resources or perform cleanup tasks
+            System.out.println("Server stopped");
+            System.exit(0);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, "Error stopping the server", ex);
+        }
+    }
+    /*
+    public static void main(String[] args) {
+        
+        System.out.println("Server is starting");
+        Server serverInstance = new Server();
+
+        // Create and start the server thread
+        serverInstance.threadServer = new Thread(serverInstance.new ServerThread());
+        serverInstance.threadServer.start();
+        
+
+        System.out.println("Server is running. Usernames: " + Server.getUserUniqueNames() + ", Emails: " + Server.getEmails());
+       
+
     }
     */
     
+    /*
+    public static ArrayList<String> getEmails() {
+        return emails;
+    }
+    
+    private void setEmails(){
+        try {
+            DAOUser daoUser = new DAOUser();
+            emails = daoUser.getEmails();
+        } catch (SQLException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    */
+
+
 }

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.sql.Date;
 
 public class DTOUser {
-    private String userUniqueName;
+    private String user_unique_name;
     private String email;
     private String name;
     private String password;
@@ -13,8 +13,13 @@ public class DTOUser {
     private Date dob;
     private String gender;
     
-    public DTOUser(String userUniqueName, String email, String name, String password, int balance, LocalDate dob, String gender) {
-        this.userUniqueName = userUniqueName;
+    public DTOUser(){
+        
+    }
+    
+    //Constructor with all attributes
+    public DTOUser(String user_unique_name, String email, String name, String password, int balance, LocalDate dob, String gender) {
+        this.user_unique_name = user_unique_name;
         this.email = email;
         this.name = name;
         this.password = password;
@@ -23,8 +28,9 @@ public class DTOUser {
         this.gender = gender;
     }
     
-    public DTOUser(String userUniqueName, String email, String name, int balance, LocalDate dob, String gender){
-        this.userUniqueName = userUniqueName;
+    //Constructor for retieve user data from DB to clien homescene
+    public DTOUser(String user_unique_name, String email, String name, int balance, LocalDate dob, String gender){
+        this.user_unique_name = user_unique_name;
         this.email = email;
         this.name = name;
         this.balance = balance;
@@ -32,12 +38,29 @@ public class DTOUser {
         this.gender = gender;
     }
 
-    public String getUserUniqueName() {
-        return this.userUniqueName;
+    //Register Constructor for holding the registeration data
+    public DTOUser(String user_unique_name, String email, String name, String password, LocalDate dob, String gender) {
+        this.user_unique_name = user_unique_name;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.dob = java.sql.Date.valueOf(dob);
+        this.gender = gender;
     }
 
-    public void setUser_name(String userUniqueName) {
-        this.userUniqueName = userUniqueName;
+    public DTOUser(String user_unique_name, String email, Date dob) {
+        this.user_unique_name = user_unique_name;
+        this.email = email;
+        this.dob = dob;
+    }
+    
+    
+    public String getUserUniqueName() {
+        return this.user_unique_name;
+    }
+
+    public void setUser_name(String user_unique_name) {
+        this.user_unique_name = user_unique_name;
     }
 
     public String getEmail() {

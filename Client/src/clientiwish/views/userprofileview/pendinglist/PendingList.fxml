@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="viewPendingList" prefHeight="653.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.pendinglist.PendingListController">
+   <children>
+      <TableView fx:id="fRequestTableView" layoutX="-8.0" layoutY="-1.0" prefHeight="653.0" prefWidth="815.0">
+        <columns>
+          <TableColumn fx:id="friendName" prefWidth="276.0" text="Reciever Name" />
+          <TableColumn fx:id="friendEmail" prefWidth="271.0" text="Reciever Email" />
+            <TableColumn fx:id="FriendBirthdate" prefWidth="267.9999694824219" text="Reciever Bitthdate" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

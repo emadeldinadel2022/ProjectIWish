@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.notification.NotificationController">
+   <children>
+      <TableView fx:id="notifTableView" layoutX="-8.0" layoutY="-1.0" prefHeight="653.0" prefWidth="815.0">
+        <columns>
+          <TableColumn fx:id="itemName" prefWidth="200.0" text="Item Name" />
+          <TableColumn fx:id="itemPrice" prefWidth="200.0" text="Item Price" />
+            <TableColumn fx:id="NotifContributors" prefWidth="414.0" text="Contributors" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

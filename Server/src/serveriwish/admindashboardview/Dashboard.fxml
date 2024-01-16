@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="dashboardAP" minWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serveriwish.admindashboardview.DashboardController">
+   <children>
+      <VBox layoutY="-5.0" maxHeight="-Infinity" prefHeight="727.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="699.0" prefWidth="891.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label alignment="TOP_LEFT" text="Dashboard">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" spacing="220.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="240.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
+                           <children>
+                              <HBox prefHeight="43.0" prefWidth="240.0">
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="177.0" text="USERS">
+                                       <font>
+                                          <Font name="Segoe UI Semilight" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" />
+                                    <ImageView disable="true" fitHeight="52.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/admindashboard/icons8-group-of-business-team-leading-for-sales-and-finance-96.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="labelUsers" onKeyPressed="#getAllUsers" prefHeight="76.0" prefWidth="242.0" text="100">
+                                 <font>
+                                    <Font name="Segoe UI Black" size="40.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="25.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="-50.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="240.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
+                           <children>
+                              <HBox prefHeight="43.0" prefWidth="240.0">
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="177.0" text="ITEMS">
+                                       <font>
+                                          <Font name="Segoe UI Semilight" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" />
+                                    <ImageView disable="true" fitHeight="52.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/admindashboard/icons8-gifts-64.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="labelItems" onKeyPressed="#getAllItems" prefHeight="76.0" prefWidth="242.0" text="100">
+                                 <font>
+                                    <Font name="Segoe UI Black" size="40.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="25.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Line endX="405.29290771484375" endY="-0.41421353816986084" startX="-100.0">
+                     <VBox.margin>
+                        <Insets left="210.0" top="20.0" />
+                     </VBox.margin>
+                  </Line>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <HBox prefHeight="322.0" prefWidth="950.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" spacing="30.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
+               <HBox.margin>
+                  <Insets left="70.0" />
+               </HBox.margin>
+               <children>
+                  <Label alignment="TOP_LEFT" text="Server Status">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ToggleButton fx:id="bttnServerStatus" mnemonicParsing="false" onAction="#changeServerSatus" prefWidth="163.0" text="ON" textFill="WHITE">
+                     <font>
+                        <Font name="Inter SemiBold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="70.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="transparent" />
+                        <String fx:value="search-container" />
+                        <String fx:value="toggle-button" />
+                     </styleClass>
+                  </ToggleButton>
+               </children>
+            </VBox>
+            <Line endX="-98.75733947753906" endY="238.95957946777344" startX="-100.0">
+               <HBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </HBox.margin>
+            </Line>
+            <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
+               <children>
+                  <Label alignment="TOP_LEFT" text="Add Item">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="73.0" prefWidth="340.0" spacing="48.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" text="Item name">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFieldItemName" prefHeight="25.0" prefWidth="180.0" promptText="item name..." />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="347.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" top="-20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="127.0" text="Description">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFieldItemDescription" prefHeight="68.0" prefWidth="185.0" promptText="Item description.....">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="57.0" prefWidth="345.0" spacing="70.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" text="Price">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFieldItemPrice" prefHeight="25.0" prefWidth="185.0" promptText="item price">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" top="-20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button fx:id="bttnAddItem" mnemonicParsing="false" onAction="#addUserHandler" stylesheets="@../resources/admindashboard/style.css" text="ADD">
+                     <styleClass>
+                        <String fx:value="search-container" />
+                        <String fx:value="primary-color" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label fx:id="labelstate" prefHeight="17.0" prefWidth="245.0" textFill="LIME" />
+               </children>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="50.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>
