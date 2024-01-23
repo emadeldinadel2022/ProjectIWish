@@ -12,10 +12,17 @@ public class DTOUser {
     private int balance;
     private Date dob;
     private String gender;
+    private byte[] image;
     
     public DTOUser(){
         
     }
+
+    public DTOUser(String user_unique_name) {
+        this.user_unique_name = user_unique_name;
+    }
+
+    
     
     //Constructor with all attributes
     public DTOUser(String user_unique_name, String email, String name, String password, int balance, LocalDate dob, String gender) {
@@ -46,6 +53,31 @@ public class DTOUser {
         this.password = password;
         this.dob = java.sql.Date.valueOf(dob);
         this.gender = gender;
+    }
+    
+    public DTOUser(String userUniqueName, String email, String name, int balance, LocalDate dob, String gender, byte[] photoBytes) {
+        this.user_unique_name = userUniqueName;
+        this.email = email;
+        this.name = name;
+        this.balance = balance;
+        this.dob = java.sql.Date.valueOf(dob);
+        this.gender = gender;
+        this.image = photoBytes;
+    }
+    
+    public DTOUser(String user_unique_name, String email, String name, int balance, Date dob, String gender, byte[] image) {
+        this.user_unique_name = user_unique_name;
+        this.email = email;
+        this.name = name;
+        this.balance = balance;
+        this.dob = dob;
+        this.gender = gender;
+        this.image = image;
+    }
+
+    public DTOUser(String user_unique_name, int balance) {
+        this.user_unique_name = user_unique_name;
+        this.balance = balance;
     }
 
     public DTOUser(String user_unique_name, String email, Date dob) {
@@ -85,6 +117,10 @@ public class DTOUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public byte[] getImage() {
+        return image;
     }
 
     public int getBalance() {

@@ -3,6 +3,7 @@ package clientiwish.models;
 
 import java.time.LocalDate;
 import java.sql.Date;
+import java.sql.Blob;
 
 public class DTOUser {
     private String user_unique_name;
@@ -12,10 +13,47 @@ public class DTOUser {
     private int balance;
     private Date dob;
     private char gender;
+    private byte[] image;
+
+    public DTOUser(String userUniqueName, byte[] imageBytes) {
+        this.user_unique_name = userUniqueName;
+        this.image = imageBytes;
+    }
+
+    //Constructor for adding balance
+    public DTOUser(String user_unique_name, int balance) {
+        this.user_unique_name = user_unique_name;
+        this.balance = balance;
+    }
+
+    public String getUser_unique_name() {
+        return user_unique_name;
+    }
+
+    public void setUser_unique_name(String user_unique_name) {
+        this.user_unique_name = user_unique_name;
+    }
+
+    public DTOUser(String user_unique_name) {
+        this.user_unique_name = user_unique_name;
+    }
+
+    
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+   
     
     public DTOUser(){
         
     }
+    
     
     //Constructor with all attributes
     public DTOUser(String user_unique_name, String email, String name, String password, int balance, LocalDate dob, char gender) {
@@ -41,6 +79,12 @@ public class DTOUser {
         this.balance = balance;
         this.dob = java.sql.Date.valueOf(dob);
         this.gender = gender;
+    }
+
+    public DTOUser(String user_unique_name, int balance, LocalDate dob) {
+        this.user_unique_name = user_unique_name;
+        this.balance = balance;
+        this.dob =  java.sql.Date.valueOf(dob);
     }
 
     //Register Constructor for holding the registeration data

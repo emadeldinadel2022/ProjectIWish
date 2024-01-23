@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,9 +43,22 @@ public class UsersController implements Initializable {
     private TableColumn<DTOUser, String> gender;
     @FXML
     private TableColumn<DTOUser, Integer> balance;
-    @FXML
-    void btnDelUser(ActionEvent event) throws SQLException {
-            DTOUser selectedUser = usersTables.getSelectionModel().getSelectedItem();
+    public void btnDelUser(ActionEvent event) {
+        // Get the selected user
+        DTOUser selectedUser = usersTables.getSelectionModel().getSelectedItem();
+
+        // Check if a user is selected
+        if (selectedUser == null) {
+            // No user selected, show an alert
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Selecting a User.");
+            alert.setHeaderText(null); // No header text
+            alert.setContentText("Please select a user first!");
+            alert.showAndWait();
+            return;
+        }
+
+            // Remove the user from the list and database
             userList.remove(selectedUser);
             DAOUser del = new DAOUser();
             del.delUser(selectedUser);

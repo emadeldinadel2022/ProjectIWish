@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serveriwish.admindashboardview.home.SidebarController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serveriwish.admindashboardview.home.SidebarController">
    <left>
       <VBox alignment="CENTER_RIGHT" fillWidth="false" maxHeight="-Infinity" prefHeight="1200.0" prefWidth="250.0" spacing="50.0" styleClass="white_background" stylesheets="@../../resources/admindashboard/style.css">
          <children>
@@ -67,23 +67,35 @@
                   </Button>
                </children>
             </HBox>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="250.0">
+               <children>
+                  <ImageView disable="true" fitHeight="37.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/admindashboard/icons8-gifts-64(1).png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnscrap" mnemonicParsing="false" onAction="#clickscrap" style="-fx-background-color: transparent;" text="Scrape">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </left>
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" styleClass="white_background" stylesheets="@../../resources/admindashboard/style.css">
+            <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="850.0" styleClass="white_background" stylesheets="@../../resources/admindashboard/style.css">
                <children>
-                  <Pane prefHeight="55.0" prefWidth="711.0" HBox.hgrow="ALWAYS" />
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="search-container" stylesheets="@../../resources/admindashboard/style.css">
+                  <Pane prefHeight="52.0" prefWidth="559.0" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="210.0" styleClass="search-container" stylesheets="@../../resources/admindashboard/style.css">
                      <children>
-                        <ImageView disable="true" fitHeight="37.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/admindashboard/icons8-search-128.png" />
-                           </image>
-                        </ImageView>
-                        <TextField prefHeight="31.0" prefWidth="178.0" promptText="Search...." styleClass="transparent" stylesheets="@../../resources/admindashboard/style.css">
+                        <TextField fx:id="txtfieldSearch" prefHeight="31.0" prefWidth="155.0" promptText="Search...." styleClass="transparent" stylesheets="@../../resources/admindashboard/style.css">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -91,14 +103,26 @@
                               <Insets />
                            </HBox.margin>
                         </TextField>
+                        <Button fx:id="btnSearch" ellipsisString="" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="51.0" styleClass="transparent" stylesheets="@../../resources/admindashboard/style.css">
+                           <graphic>
+                              <ImageView disable="true" fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/admindashboard/icons8-search-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
+                     <HBox.margin>
+                        <Insets right="-10.0" />
+                     </HBox.margin>
                   </HBox>
                   <ImageView disable="true" fitHeight="37.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/admindashboard/icons8-admin-96.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="20.0" right="10.0" />
                      </HBox.margin>
                   </ImageView>
                   <ImageView disable="true" fitHeight="29.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -111,7 +135,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <AnchorPane fx:id="mainAP" prefHeight="744.0" />
+            <AnchorPane fx:id="mainAP" prefHeight="656.0" prefWidth="850.0" />
          </children>
       </VBox>
    </center>

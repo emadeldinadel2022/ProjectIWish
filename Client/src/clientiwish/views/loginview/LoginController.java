@@ -3,25 +3,27 @@ package clientiwish.views.loginview;
 import clientCommunication.Client;
 import clientiwish.models.DTOUser;
 import clientiwish.views.userprofileview.home.UserProfileController;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sharedlibraries.Response;
 
-public class LoginController implements Initializable {
+public class LoginController{
 
     @FXML
     private TextField textFieldUserName;
@@ -33,9 +35,23 @@ public class LoginController implements Initializable {
 
     @FXML
     private Label loginPasswordAlert;
-
+    @FXML
+    private ImageView userImage;
     @FXML
     private Label loginDataAlert;
+    @FXML
+    private Button bttnLogin;
+    @FXML
+    private Hyperlink forgetPasswordHyper;
+    @FXML
+    private Hyperlink regHyper;
+    
+    
+    
+    private Image getImageFromBytes(byte[] imageData) {
+        ByteArrayInputStream stream = new ByteArrayInputStream(imageData);
+        return new Image(stream);
+    }
 
     @FXML
     private void handleLoginAction(ActionEvent event) {
@@ -76,10 +92,17 @@ public class LoginController implements Initializable {
                                     userProfileController.getLabelUserName().setText(receivedUser.getName());
                                     userProfileController.getLabelUserUniqueName().setText(receivedUser.getUserUniqueName());
                                     userProfileController.getLabelUserEmail().setText(receivedUser.getEmail());
-                                    userProfileController.getLabelUserBalance().setText("$ "+String.valueOf(receivedUser.getBalance()));
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
                                     String formattedDate = dateFormat.format(receivedUser.getDob());
                                     userProfileController.getLabelUserDOB().setText(formattedDate);
+                                    if (receivedUser.getImage() != null) {
+                                    Image image = getImageFromBytes(receivedUser.getImage());
+                                    
+                                        ImageView imageView = new ImageView(image);
+                                    
+                                        userProfileController.getUserImage().setImage(image);
+                                    }
+                                    
 
                                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     Scene scene = new Scene(root);
@@ -118,9 +141,18 @@ public class LoginController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML
+    private void forgetPassword(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/clientiwish/views/resetpassword/SecurityQuestions.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        
     }
+
+    
+    
 
 }

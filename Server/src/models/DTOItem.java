@@ -6,9 +6,21 @@ import java.sql.Blob;
 public class DTOItem {
     private int itemid;
     private String itemname;
+   
+
+    public DTOItem(int itemid, String itemname, int itemprice) {
+        this.itemid = itemid;
+        this.itemname = itemname;
+        this.itemprice = itemprice;
+    }
     private String itemdescription;
     private int itemprice;
     private int itemreminder;
+
+    public DTOItem(byte[] itemimage) {
+        this.itemimage = itemimage;
+    }
+    private byte[] itemimage;
    // private Blob img;
 
     public DTOItem(String itemname, String itemdescription, int itemprice) {
@@ -25,12 +37,33 @@ public class DTOItem {
         //this.img = img;
     }
     
+    public DTOItem(int itemid, String itemname, String itemdescription, int itemprice, byte[] itemimage) {
+        this.itemid = itemid;
+        this.itemname = itemname;
+        this.itemdescription = itemdescription;
+        this.itemprice = itemprice;
+        this.itemimage = itemimage;
+    }
+    
+    public DTOItem( String itemname, String itemdescription, int itemprice, byte[] itemimage) {
+        this.itemname = itemname;
+        this.itemdescription = itemdescription;
+        this.itemprice = itemprice;
+        this.itemimage = itemimage;
+    }
+    
     public DTOItem(int itemid, String itemname, String itemdescription, int itemprice, int itemreminder) {
         this.itemid = itemid;
         this.itemname = itemname;
         this.itemdescription = itemdescription;
         this.itemprice = itemprice;
         this.itemreminder = itemreminder;
+    }
+
+    public DTOItem(String itemname, int itemprice, byte[] itemimage) {
+        this.itemname = itemname;
+        this.itemprice = itemprice;
+        this.itemimage = itemimage;
     }
 
     public int getItemreminder() {
@@ -44,7 +77,11 @@ public class DTOItem {
     public int getItemid() {
         return itemid;
     }
-
+    
+    public byte [] getItemimage() {
+        return itemimage;
+    }
+    
     public void setItemid(int itemid) {
         this.itemid = itemid;
     }

@@ -16,11 +16,27 @@ public class DTOItem {
     private int itemprice;
     private int itemreminder;
    // private Blob img;
+    private byte[] itemimage;
 
     public DTOItem(String itemname, String itemdescription, int itemprice) {
         this.itemname = itemname;
         this.itemdescription = itemdescription;
         this.itemprice = itemprice;
+    }
+    
+    public DTOItem(int itemid, String itemname, String itemdescription, int itemprice, byte[] itemimage) {
+        this.itemid = itemid;
+        this.itemname = itemname;
+        this.itemdescription = itemdescription;
+        this.itemprice = itemprice;
+        this.itemimage = itemimage;
+    }
+    
+    public DTOItem( String itemname, String itemdescription, int itemprice, byte[] itemimage) {
+        this.itemname = itemname;
+        this.itemdescription = itemdescription;
+        this.itemprice = itemprice;
+        this.itemimage = itemimage;
     }
 
     public DTOItem(int itemid, String itemname, String itemdescription, int itemprice) {
@@ -39,6 +55,10 @@ public class DTOItem {
         this.itemreminder = itemreminder;
     }
 
+    public DTOItem(int itemid) {
+        this.itemid = itemid;
+    }
+    
     public int getItemreminder() {
         return itemreminder;
     }
@@ -49,6 +69,9 @@ public class DTOItem {
 
     public int getItemid() {
         return itemid;
+    }
+    public byte [] getItemimage() {
+        return itemimage;
     }
 
     public void setItemid(int itemid) {

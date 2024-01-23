@@ -50,10 +50,12 @@ public class DAO {
         System.out.println("schema: " +metaData.getConnection().getCatalog());
     }
      
-    public void closeConnection() throws SQLException {
+    public static void closeConnection() throws SQLException {
         try {
             if (con != null && !con.isClosed()) {
                 con.close();
+                con = null;
+                instance = null;
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);

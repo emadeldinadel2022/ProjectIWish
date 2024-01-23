@@ -20,15 +20,13 @@ public class Main extends Application{
 
             stage.resizableProperty().setValue(false);
             stage.setScene(scene);
-            stage.show();
+            stage.show(); 
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
  

@@ -1,0 +1,108 @@
+.table-view {
+    -fx-background-color: transparent; /* OR -fx-background-insets: 0.0; */
+    -fx-background-radius: 5.0; /* Rounded corners */
+}
+
+.table-view .column-header-background,
+.table-view .column-header-background .filler,
+.table-view .corner {
+	-fx-background-color: transparent;
+}
+
+.table-view .column-header {
+	-fx-background-color: rgb(0,0,0,0.1);
+	-fx-border-color: transparent;
+	-fx-pref-height: 40px; /* Set the minimum height of the header cell */
+}
+
+.table-view .column-header .label{
+	-fx-font-weight: bold; 
+	-fx-alignment: center;
+}
+
+/* This is just magic */
+.table-row-cell:filled {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent ;
+	-fx-border-insets: 0, 1;
+}
+
+.table-row-cell:empty {
+	-fx-background-color: transparent;
+}
+
+.table-row-cell:filled:hover {
+	-fx-background-color: transparent;
+}
+
+.table-row-cell:filled:selected:hover {
+	-fx-background-color: rgb(0,0,0,0.2);
+}
+
+.table-row-cell:filled:selected {
+  	-fx-background-color: rgb(0,0,0,0.2);
+ 	-fx-background-insets: 0.0;
+	-fx-background-radius: 0.0;
+}
+
+.table-row-cell:filled:selected .table-cell {
+	-fx-text-fill: black;
+}
+
+.table-view .cell:filled {
+	-fx-cell-size: 40;
+	-fx-alignment: center;
+}
+
+.check-box-table-cell > .check-box:selected .box .mark {
+	-fx-background-color: white;
+}
+
+.check-box-table-cell > .check-box:selected .box {
+	-fx-background-color: -fx-accent-color;
+}
+
+.table-view .placeholder .label {
+	-fx-text-fill: red;
+	-fx-padding: 20px;
+}
+
+/* font */
+
+.table-view .column-header .label {
+    -fx-font-family: "Book Antiqua";
+    -fx-font-size: 16px; /* Adjust the font size as needed */
+    -fx-font-weight: bold; 
+    -fx-cell-size: 40;
+    -fx-alignment: center;
+}
+
+.table-view .cell:filled {
+    -fx-font-family: "Book Antiqua";
+    -fx-font-size: 14px; /* Adjust the font size as needed */
+    -fx-cell-size: 40;
+    -fx-alignment: center;
+}
+
+.table-view .placeholder .label {
+    -fx-font-family: "Book Antiqua";
+    -fx-font-size: 16px; /* Adjust the font size as needed */
+    -fx-text-fill: red;
+    -fx-padding: 20px;
+}
+
+/* Add this style for the button */
+.button {
+    -fx-background-color: rgba(0,0,0,0.3);
+    -fx-text-fill: white; /* Text color */
+    -fx-font-family: "Book Antiqua"; /* Font family */
+    -fx-font-size: 16px; /* Font size */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5); /* Add a subtle shadow */
+    -fx-padding: 8 15; /* Padding around the text */
+}
+
+/* Add this style for the button on hover */
+.button:hover {
+    -fx-background-color: #e89f22; /* Darken the color on hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 5); /* Enhance the shadow on hover */
+}

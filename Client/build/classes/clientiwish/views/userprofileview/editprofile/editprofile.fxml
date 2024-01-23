@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="editAnchorPane" prefHeight="521.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.editprofile.EditprofileController">
+   <children>
+      <Label fx:id="fullnameLabel" alignment="CENTER" layoutX="112.0" layoutY="159.0" prefHeight="36.0" prefWidth="208.0" text="Full name" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fullnameTextField" layoutX="347.0" layoutY="162.0" prefHeight="30.0" prefWidth="283.0" />
+      <Button fx:id="confirmButton" layoutX="299.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="39.0" prefWidth="103.0" styleClass="editprofilebutton-color" stylesheets="@../../resources/userprofile/style.css" text="Confirm">
+         <font>
+            <Font name="Inter Black" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="editLabel" alignment="CENTER" layoutX="152.0" layoutY="332.0" prefHeight="20.0" prefWidth="289.0" textFill="#43bc1b">
+         <font>
+            <Font name="Segoe UI Light" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="112.0" layoutY="212.0" prefHeight="36.0" prefWidth="208.0" text="Enter your new passowrd" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="confirmpasswordLabel" alignment="CENTER" layoutX="113.0" layoutY="266.0" prefHeight="36.0" prefWidth="208.0" text="Confirm your new passowrd" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordTextField" layoutX="347.0" layoutY="215.0" prefHeight="30.0" prefWidth="283.0" />
+      <PasswordField fx:id="confirmpasswordTextField" layoutX="347.0" layoutY="269.0" prefHeight="30.0" prefWidth="283.0" />
+      <HBox alignment="CENTER" layoutX="6.0" prefHeight="67.0" prefWidth="750.0" spacing="10.0">
+         <children>
+            <ImageView fx:id="iconImageView" fitHeight="53.0" fitWidth="1.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="labelViewName" prefHeight="61.0" prefWidth="472.0" text="Edit my profile" textFill="#f6b63d">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="enterBalanceLabel1" alignment="CENTER" prefHeight="27.0" prefWidth="103.0" text="Your balance: " textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="40.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="yourbalance" alignment="CENTER" prefHeight="27.0" prefWidth="154.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe UI Semibold Italic" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="40.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

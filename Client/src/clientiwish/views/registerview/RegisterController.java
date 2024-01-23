@@ -120,11 +120,9 @@ public class RegisterController {
                                         }
                                     }
 
-                                    // Handle the response from the server
                                     Response<DTOUser> responseRegister = Client.getResponse();
                                     Platform.runLater(() -> {
                                         if (responseRegister != null && responseRegister.isSuccess()) {
-                                            // Registration successful, load login scene
                                             try {
                                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/clientiwish/views/loginview/Login.fxml"));
                                                 root = loader.load();

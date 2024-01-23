@@ -32,7 +32,7 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-            <Hyperlink layoutX="119.0" layoutY="367.0" style="-: #F6B63DD6;" text="Forgot Password?" textFill="#f6b63d" />
+            <Hyperlink fx:id="forgetPasswordHyper" layoutX="119.0" layoutY="367.0" onAction="#forgetPassword" style="-: #F6B63DD6;" text="Forgot Password?" textFill="#f6b63d" />
             <Label layoutX="139.0" layoutY="64.0" prefHeight="132.0" prefWidth="199.0" stylesheets="@../resources/loginandregister/pic.css" text="LOGIN">
                <font>
                   <Font name="Aldhabi" size="90.0" />

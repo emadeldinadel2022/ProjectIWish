@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ClientIwish.jar" size="603262" download="eager" />
+    <jar href="ClientIwish.jar" size="797450" download="eager" />
     <jar href="lib\gson-2.8.2.jar" size="232932" download="eager" />
     <jar href="lib\json-20231013.jar" size="74702" download="eager" />
     <jar href="lib\sharedlibraries.jar" size="3275" download="eager" />

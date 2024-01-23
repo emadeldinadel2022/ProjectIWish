@@ -15,21 +15,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="dashboardAP" minWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serveriwish.admindashboardview.DashboardController">
+<AnchorPane fx:id="dashboardAP" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serveriwish.admindashboardview.DashboardController">
    <children>
-      <VBox layoutY="-5.0" maxHeight="-Infinity" prefHeight="727.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutY="-5.0" prefHeight="600.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="699.0" prefWidth="891.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label alignment="TOP_LEFT" text="Dashboard">
+                  <Label alignment="TOP_LEFT" text="Dashboard" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets bottom="5.0" left="70.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" spacing="220.0">
+                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="120.0" prefWidth="891.0" spacing="220.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="240.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
                            <children>
@@ -54,7 +54,7 @@
                                     </ImageView>
                                  </children>
                               </HBox>
-                              <Label fx:id="labelUsers" onKeyPressed="#getAllUsers" prefHeight="76.0" prefWidth="242.0" text="100">
+                              <Label fx:id="labelUsers" onKeyPressed="#getAllUsers" prefHeight="76.0" prefWidth="242.0" text="---">
                                  <font>
                                     <Font name="Segoe UI Black" size="40.0" />
                                  </font>
@@ -90,7 +90,7 @@
                                     </ImageView>
                                  </children>
                               </HBox>
-                              <Label fx:id="labelItems" onKeyPressed="#getAllItems" prefHeight="76.0" prefWidth="242.0" text="100">
+                              <Label fx:id="labelItems" onKeyPressed="#getAllItems" prefHeight="76.0" prefWidth="242.0" text="---">
                                  <font>
                                     <Font name="Segoe UI Black" size="40.0" />
                                  </font>
@@ -112,14 +112,14 @@
                   </Line>
                </children>
                <VBox.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </VBox>
          </children>
       </VBox>
-      <HBox prefHeight="322.0" prefWidth="950.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
+      <HBox prefHeight="414.0" prefWidth="950.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" spacing="30.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" spacing="30.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
                <HBox.margin>
                   <Insets left="70.0" />
                </HBox.margin>
@@ -132,7 +132,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <ToggleButton fx:id="bttnServerStatus" mnemonicParsing="false" onAction="#changeServerSatus" prefWidth="163.0" text="ON" textFill="WHITE">
+                  <ToggleButton fx:id="bttnServerStatus" mnemonicParsing="false" onAction="#changeServerStatus" prefWidth="163.0" text="ON" textFill="WHITE">
                      <font>
                         <Font name="Inter SemiBold" size="18.0" />
                      </font>
@@ -152,7 +152,7 @@
                   <Insets left="50.0" top="40.0" />
                </HBox.margin>
             </Line>
-            <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
+            <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="331.0" prefWidth="360.0" styleClass="card" stylesheets="@../resources/admindashboard/style.css">
                <children>
                   <Label alignment="TOP_LEFT" text="Add Item">
                      <font>
@@ -209,7 +209,7 @@
                         <Insets left="20.0" top="-20.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button fx:id="bttnAddItem" mnemonicParsing="false" onAction="#addUserHandler" stylesheets="@../resources/admindashboard/style.css" text="ADD">
+                  <Button fx:id="bttnUploadImage" mnemonicParsing="false" onAction="#uploadImageHandler" stylesheets="@../resources/admindashboard/style.css" text="UPLOAD IMAGE">
                      <styleClass>
                         <String fx:value="search-container" />
                         <String fx:value="primary-color" />
@@ -217,6 +217,12 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                  </Button>
+                  <Button fx:id="bttnAddItem" layoutX="169.0" layoutY="261.0" mnemonicParsing="false" onAction="#addUserHandler" stylesheets="@../resources/admindashboard/style.css" text="ADD">
+                     <styleClass>
+                        <String fx:value="search-container" />
+                        <String fx:value="primary-color" />
+                     </styleClass>
                   </Button>
                   <Label fx:id="labelstate" prefHeight="17.0" prefWidth="245.0" textFill="LIME" />
                </children>

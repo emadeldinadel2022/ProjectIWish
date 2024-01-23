@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="searchAnchorPane" prefHeight="521.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientiwish.views.userprofileview.usersearch.UserSearchController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutX="4.0" prefHeight="82.0" prefWidth="816.0" spacing="20.0">
+         <children>
+            <ImageView fx:id="iconImageView" fitHeight="53.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/userprofile/search.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="labelViewName" prefHeight="61.0" prefWidth="336.0" text="User Search" textFill="#f6b63d">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </HBox>
+      <TableView fx:id="searchTableView" layoutX="7.0" layoutY="124.0" prefHeight="390.0" prefWidth="805.0" stylesheets="@../../resources/userprofile/tableViewStyle.css">
+        <columns>
+          <TableColumn fx:id="userNameColumn" prefWidth="272.33333587646484" text="User Name" />
+          <TableColumn fx:id="emailColumn" prefWidth="275.0" text="User Email" />
+            <TableColumn fx:id="birthdateColumn" prefWidth="268.0" text="User Birthdate" />
+        </columns>
+      </TableView>
+      <Button fx:id="addFriendButton" layoutX="350.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleAddFriendButton" opacity="0.68" prefHeight="37.0" prefWidth="133.0" style="-fx-background-color: blue;" text="Add Friend" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

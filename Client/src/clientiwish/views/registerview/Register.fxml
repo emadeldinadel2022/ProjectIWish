@@ -86,7 +86,7 @@
                   <Font name="Baskerville Old Face" size="13.0" />
                </font>
             </Hyperlink>
-            <Label fx:id="dataAlert" layoutX="148.0" layoutY="500.0" textFill="RED">
+            <Label fx:id="dataAlert" layoutX="86.0" layoutY="495.0" textFill="RED">
                <font>
                   <Font name="Baskerville Old Face" size="15.0" />
                </font>
