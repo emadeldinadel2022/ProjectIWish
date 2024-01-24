@@ -34,7 +34,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import server.ItemScrapping;
 import serveriwish.admindashboardview.DashboardController;
 import serveriwish.admindashboardview.items.ItemsController;
 import serveriwish.admindashboardview.scrap.ScrapController;
@@ -325,7 +324,7 @@ public class SidebarController implements Initializable {
            
          
     }   catch (IOException ex) {
-            Logger.getLogger(ItemScrapping.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
             return scrapingitems;

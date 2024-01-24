@@ -46,13 +46,29 @@ public class SecurityQuestionsController{
    
     @FXML
 public void verifyData(ActionEvent event) {
+     if (!Client.isServerConnected()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Connection Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Server is out of serving right now, try again later");
+            alert.showAndWait();
+            return;
+        }
+
     String userUniqueName = textFieldUserName.getText();
     LocalDate userDate = datePickerDOB.getValue();
 
     try {
         int balance = Integer.parseInt(textFieldBalance.getText());
 
-        if (userUniqueName.isEmpty() || userDate == null || balance == 0 || textFieldBalance.getText().equals("")) {
+         if (Client.getSocket().isClosed()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Server Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Server is disconnected, try again later");
+            alert.showAndWait();
+        }
+         else if (userUniqueName.isEmpty() || userDate == null || balance == 0 || textFieldBalance.getText().equals("")) {
             dataAlert.setText("Incomplete Data");
         } else {
             new Thread() {

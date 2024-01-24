@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -77,14 +78,30 @@ public class RegisterController {
 
     @FXML
     public void handleButtonAction(ActionEvent event) {
+         if (!Client.isServerConnected()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Connection Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Server is out of serving right now, try again later");
+            alert.showAndWait();
+            return;
+        }
+
         String userFullName = txtFieldUserFullName.getText();
         String userUniqueName = txtFieldUniqueName.getText();
         LocalDate userDate = datePickerDOB.getValue();
         String userEmail = txtfFieldEmail.getText();
         String userPassword = passFieldUserPassword.getText();
         String confirmUserPassword = passFieldConfirmPassword.getText();
-
-        if (userFullName.length() == 0 || userUniqueName.length() == 0
+        
+        if (Client.getSocket().isClosed()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Server Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Server is disconnected, try again later");
+            alert.showAndWait();
+        }
+                else if (userFullName.length() == 0 || userUniqueName.length() == 0
                 || userFullName.length() == 0 || userDate == null) {
             dataAlert.setText("please, complete your data");
         } else {

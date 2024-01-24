@@ -40,6 +40,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -173,6 +174,14 @@ public class UserProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         if (!Client.isServerConnected()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Connection Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Server is out of serving right now, try again later");
+            alert.showAndWait();
+            return;
+        }
 
         searchListView.visibleProperty().bind(searchTextField.textProperty().isNotEmpty());
         searchListView.setItems(data);

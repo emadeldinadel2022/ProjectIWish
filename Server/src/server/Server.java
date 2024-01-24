@@ -13,16 +13,13 @@ public class Server {
     private static DAO STATICDBOBJECT_DAO;
     private ServerSocket serverSocket;
     private boolean serverStatus;
-    private static Server serverInstance;
+    //private static Server serverInstance;
     private String IP;
     Thread threadServer;
 
-    private Server() {
+    public Server() {
         try {
             serverSocket = new ServerSocket(5885);
-            //STATICDBOBJECT_DAO = DAO.getInstance();
-
-            
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -40,7 +37,7 @@ public class Server {
 
         @Override
         public void run() {
-            //while (serverStatus) {
+            while (serverStatus) {
                 try {
                     System.out.println("Server Start to accept clients' sockets");
                     Socket clientSocket = serverSocket.accept();
@@ -54,27 +51,29 @@ public class Server {
                     if (!serverSocket.isClosed()) {
                         Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                     } else {
-                       // break;
-                   // }
+                       break;
+                    }
                 }
             }
         }
     }
 
+    /*
      public static Server getInstance() {//instansation method for signleton object
         if (serverInstance == null) {
             serverInstance = new Server();
         }
         return serverInstance;
     }
+*/
      
     public void startServer() {
         serverStatus = true;
         System.out.println("Server is starting");
         DAO.getInstance();
         System.out.println("Server connected to Database successfully");
-        serverInstance.threadServer = new Thread(serverInstance.new ServerThread());
-        serverInstance.threadServer.start();
+        threadServer = new Thread(new ServerThread());
+        threadServer.start();
         System.out.println("Server thread is initiated");
         System.out.println("Server is running.");
     }
@@ -82,23 +81,24 @@ public class Server {
     public void stopServer() {
         try {
             System.out.println("Server is shuting down");
-            serverStatus = false;
+           
             ClientHandler.closeConnections();
             System.out.println("Close all clients connections");
             ClientHandler.clientsVector.clear();
             System.out.println("Clear clients handler vector");
             DAO.closeConnection();
             System.out.println("Database Conncetion Closed");
-            //serverInstance.threadServer.stop();
+            threadServer.stop();
             System.out.println("Shut down the server thread");
             serverSocket.close();
             System.out.println("Server stopped");
+             serverStatus = false;
             
-            //serverInstance = new Server();
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, "Error stopping the server", ex);
         } catch (SQLException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    
 }

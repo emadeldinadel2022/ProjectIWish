@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +34,10 @@ public class Client {
     private static PrintStream ps;
     private static Response response;
     private static DTOUser currentUser;
+
+    public static Socket getSocket() {
+        return socket;
+    }
 
     public static synchronized DTOUser getCurrentUser() {
         return currentUser;
@@ -51,9 +56,9 @@ public class Client {
             ClientReciever clientReciever = new ClientReciever();
             clientReciever.start();
         } catch (ConnectException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Faild to connect with the server" + "\n" + "Error Message: " + ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Faild to connect with the server" + "\n" + "Error Message: " + ex.getMessage());
         }
     }
 
@@ -184,12 +189,14 @@ public class Client {
                             break;
                         case "SECURITYQUESTION":
                             gson = new Gson();
-                            Response<DTOUser> secQuesResponse = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>(){}.getType());
+                            Response<DTOUser> secQuesResponse = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>() {
+                            }.getType());
                             Client.updateResponse(secQuesResponse);
                             break;
                         case "RESETPASSWORD":
                             gson = new Gson();
-                            Response<DTOUser> resetResponse = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>(){}.getType());
+                            Response<DTOUser> resetResponse = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>() {
+                            }.getType());
                             Client.updateResponse(resetResponse);
                             break;
                         case "REMOVINGPENDINGREQUEST":
@@ -209,7 +216,7 @@ public class Client {
                             break;
                         case "FRIENDWISHLIST":
                             gson = new Gson();
-                            System.out.println("Friend Wishlist: "+ jsonResponse);
+                            System.out.println("Friend Wishlist: " + jsonResponse);
                             Response<ArrayList<DTOItem>> responseWishlistFriend = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOItem>>>() {
                             }.getType());
                             Client.updateResponse(responseWishlistFriend);
@@ -219,7 +226,7 @@ public class Client {
                             Response<DTOUser> responseEditName = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>() {
                             }.getType());
                             Client.updateResponse(responseEditName);
-                            if (responseEditName.isSuccess()){
+                            if (responseEditName.isSuccess()) {
                                 DTOUser receivedUser = (DTOUser) responseEditName.getData();
                             }
                             break;
@@ -234,7 +241,7 @@ public class Client {
                             Response<DTOUser> responseEditUser = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>() {
                             }.getType());
                             Client.updateResponse(responseEditUser);
-                            if (responseEditUser.isSuccess()){
+                            if (responseEditUser.isSuccess()) {
                                 DTOUser receivedUser = (DTOUser) responseEditUser.getData();
                             }
                             break;
@@ -291,32 +298,35 @@ public class Client {
                             break;
                         case "CONTRIBUTION":
                             gson = new Gson();
-                            Response<ArrayList<DTOItem>> responseContribution = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOItem>>>(){}.getType());
+                            Response<ArrayList<DTOItem>> responseContribution = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOItem>>>() {
+                            }.getType());
                             Client.updateResponse(responseContribution);
-                            if (responseContribution.isSuccess()){
+                            if (responseContribution.isSuccess()) {
                                 ArrayList<DTOItem> updatedWishList = responseContribution.getData();
                             }
                             break;
                         case "NOTIFICATION":
                             gson = new Gson();
-                            Response<ArrayList<DTONotification>> responseNotification = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTONotification>>>()
-                            {}.getType());
+                            Response<ArrayList<DTONotification>> responseNotification = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTONotification>>>() {
+                            }.getType());
                             Client.updateResponse(responseNotification);
                             break;
                         case "CONTRIBUTIONLIST":
                             gson = new Gson();
-                            Response<ArrayList<DTOContributionList>> responseContributionList = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOContributionList>>>()
-                            {}.getType());
+                            Response<ArrayList<DTOContributionList>> responseContributionList = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOContributionList>>>() {
+                            }.getType());
                             Client.updateResponse(responseContributionList);
                             break;
                         case "CART":
                             gson = new Gson();
-                            Response<ArrayList<DTOItem>> responseCart = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOItem>>>(){}.getType());
+                            Response<ArrayList<DTOItem>> responseCart = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<ArrayList<DTOItem>>>() {
+                            }.getType());
                             Client.updateResponse(responseCart);
-                             break;
+                            break;
                         case "COLLECTITEM":
                             gson = new Gson();
-                            Response<DTOCart> responseItemCart = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOItem>>(){}.getType());
+                            Response<DTOCart> responseItemCart = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOItem>>() {
+                            }.getType());
                             Client.updateResponse(responseItemCart);
                             break;
                         case "UPLOAD_IMAGE":
@@ -327,12 +337,14 @@ public class Client {
                             break;
                         case "CANCELCONTRIBUTION":
                             gson = new Gson();
-                            Response<DTOUser> responseReturnBalance = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>(){}.getType());
+                            Response<DTOUser> responseReturnBalance = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOUser>>() {
+                            }.getType());
                             Client.updateResponse(responseReturnBalance);
                             break;
-                         case "CARTITEMREMOVE":
+                        case "CARTITEMREMOVE":
                             gson = new Gson();
-                            Response<DTOCart> removeCartItemResponse = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOCart>>(){}.getType());
+                            Response<DTOCart> removeCartItemResponse = gson.fromJson(jmsg.getString("value"), new TypeToken<Response<DTOCart>>() {
+                            }.getType());
                             Client.updateResponse(removeCartItemResponse);
                             break;
 
@@ -347,19 +359,21 @@ public class Client {
                     dis.close();
                     ps.close();
                     socket.close();
-                    //Platform.exit();
-                    JOptionPane.showMessageDialog(null, "Server is disconnected");
 
                 } catch (IOException ex1) {
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex1);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JSONException ex) {
-                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            } catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Server is disconnected");
+            }
 
         }
 
+    }
+
+    public static boolean isServerConnected() {
+        return socket != null && socket.isConnected() && !socket.isClosed();
     }
 }

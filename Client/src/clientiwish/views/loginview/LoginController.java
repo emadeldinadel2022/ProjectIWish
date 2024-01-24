@@ -5,6 +5,7 @@ import clientiwish.models.DTOUser;
 import clientiwish.views.userprofileview.home.UserProfileController;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -23,7 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sharedlibraries.Response;
 
-public class LoginController{
+public class LoginController {
 
     @FXML
     private TextField textFieldUserName;
@@ -45,9 +47,7 @@ public class LoginController{
     private Hyperlink forgetPasswordHyper;
     @FXML
     private Hyperlink regHyper;
-    
-    
-    
+
     private Image getImageFromBytes(byte[] imageData) {
         ByteArrayInputStream stream = new ByteArrayInputStream(imageData);
         return new Image(stream);
@@ -55,6 +55,15 @@ public class LoginController{
 
     @FXML
     private void handleLoginAction(ActionEvent event) {
+        if (!Client.isServerConnected()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Connection Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Server is out of serving right now, try again later");
+            alert.showAndWait();
+            return;
+        }
+
         String username = textFieldUserName.getText();
         String password = textFieldPasswordField.getText();
         if (username.length() == 0 || password.length() == 0) {
@@ -71,7 +80,7 @@ public class LoginController{
                     Client.sendRequest("LOGIN", new DTOUser(username, password));
                     while (Client.getResponse() == null) {
                         try {
-                            Thread.sleep(100); 
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -92,17 +101,16 @@ public class LoginController{
                                     userProfileController.getLabelUserName().setText(receivedUser.getName());
                                     userProfileController.getLabelUserUniqueName().setText(receivedUser.getUserUniqueName());
                                     userProfileController.getLabelUserEmail().setText(receivedUser.getEmail());
-                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                                     String formattedDate = dateFormat.format(receivedUser.getDob());
                                     userProfileController.getLabelUserDOB().setText(formattedDate);
                                     if (receivedUser.getImage() != null) {
-                                    Image image = getImageFromBytes(receivedUser.getImage());
-                                    
+                                        Image image = getImageFromBytes(receivedUser.getImage());
+
                                         ImageView imageView = new ImageView(image);
-                                    
+
                                         userProfileController.getUserImage().setImage(image);
                                     }
-                                    
 
                                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     Scene scene = new Scene(root);
@@ -115,7 +123,7 @@ public class LoginController{
                             }
                         });
                     } else {
-                        
+
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
@@ -149,10 +157,7 @@ public class LoginController{
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
-    }
 
-    
-    
+    }
 
 }

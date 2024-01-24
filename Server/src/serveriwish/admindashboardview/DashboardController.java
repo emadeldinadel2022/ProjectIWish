@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,7 +63,7 @@ public class DashboardController implements Initializable {
     byte[] imageBytes;
     File selectedFile;
     static Server server;
-    boolean serverStatus = false;
+    //boolean serverStatus = false;
 
     public static Server getServer() {
         return server;
@@ -119,7 +120,7 @@ public class DashboardController implements Initializable {
 
         // Update the color and text based on the button state
         if (server == null || !server.isServerRunning()) {
-            server = Server.getInstance();
+            server = new Server();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Server Alert");
             alert.setHeaderText(null);
@@ -138,6 +139,13 @@ public class DashboardController implements Initializable {
             bttnServerStatus.setText("OFF");
             labelItems.setText("---");
             labelUsers.setText("---");
+            /*
+            Platform.runLater(() -> {
+
+                    Platform.exit();
+
+                });
+*/
         }
 
         //bttnServerStatus.setSelected(!bttnServerStatus.isSelected());

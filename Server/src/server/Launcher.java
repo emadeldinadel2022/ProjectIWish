@@ -9,7 +9,7 @@ public class Launcher {
             @Override
             public void run() {
                 System.out.println("Server is starting");
-                Server serverInstance = Server.getInstance(); 
+                Server serverInstance = new Server(); 
 
                 serverInstance.threadServer = new Thread(serverInstance.new ServerThread());
                 serverInstance.threadServer.start();
